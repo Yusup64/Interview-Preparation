@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Center</title>
+</head>
+<style>
+    .box {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #123456;
+        margin-bottom: 24px;
+        position: relative;
+    }
+
+    .sub {
+        width: 80px;
+        height: 80px;
+        background-color: cyan;
+    }
+
+    .box1 {
+        margin-left: 60px;
+        margin-top: 60px;
+    }
+
+    .box2 {
+        margin-left: 50%;
+        margin-top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .box3 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .box4 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .box5 {
+        display: grid;
+        align-content: center;
+        justify-items: center;
+    }
+    .box6 {
+        display: grid;
+        place-items: center;
+    }
+</style>
+
+<body>
+    <h3>margin具体像素偏移</h3>
+    <div class="box">
+        <div class="sub box1"></div>
+    </div>
+    <h3>margin先50%便宜，transform自身偏移</h3>
+    <div class="box">
+        <div class="sub box2"></div>
+    </div>
+    <h3>绝对定位</h3>
+    <div class="box">
+        <div class="sub box3"></div>
+    </div>
+    <h3>flex布局</h3>
+    <div class="box box4">
+        <div class="sub"></div>
+    </div>
+    <h3>Grid布局(1)</h3>
+    <div class="box box5">
+        <div class="sub"></div>
+    </div>
+    <h3>Grid布局(2)</h3>
+    <div class="box box6">
+        <div class="sub"></div>
+    </div>
+</body>
+
+</html>
