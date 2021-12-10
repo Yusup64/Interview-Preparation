@@ -196,11 +196,15 @@ class MyPromise {
     static race(promises) {
         return new Promise((resolve, reject) => {
             for (let i = 0, len = promises.length; i < len; i++) {
-                Promise.resolve(promises[i]).then(res => {
+                let p = promises[i];
+                if (p && typeof p.then === 'function') {
+                    p.then(resolve, reject)
+                }
+                /* Promise.resolve(promises[i]).then(res => {
                     resolve(res)
                 }).then(err => {
                     reject(err)
-                })
+                }) */
             }
             // #region
             /* let flag = false;
