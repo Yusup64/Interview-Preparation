@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=217 lang=typescript
+ * @lc app=leetcode.cn id=28 lang=typescript
  *
- * [217] 存在重复元素
+ * [28] 实现 strStr()
  */
 
 // @lc code=start
@@ -16,6 +16,7 @@ var strStr = function (haystack, needle) {
     }
     return -1;
 };
+console.log(strStr('hello', 'll'));
 
 // @lc code=end
 
