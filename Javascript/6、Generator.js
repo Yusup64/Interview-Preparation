@@ -31,3 +31,15 @@ let obj = {
     },
     [Symbol.toStringTag]: 'Hello', //[object Hello]
 }
+
+function* gen() {
+    yield 1;
+    yield 2;
+    yield 3;
+}
+let it2 = gen();
+console.log(it2.next());
+console.log(it2.next('nihao'));
+console.log(it2.next('buhao'));
+
+

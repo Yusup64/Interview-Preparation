@@ -129,3 +129,7 @@ function quickSort(arr = []) {
 console.time('quickSort');
 quickSort(randomArr);
 console.timeEnd('quickSort');
+
+setTimeout(() => {
+    console.log('Settimeout');
+}, 1000);
