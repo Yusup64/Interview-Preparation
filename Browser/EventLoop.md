@@ -54,7 +54,7 @@
 
 ## Event Loop 执行的流程如下：
 
-![EventLoop](./images/EventLoop.jpg)
+![EventLoop](https://github.com/Yusup64/Interview-Preparation/blob/main/Browser/images/EventLoop.jpg?raw=true)
 
 ## 下面一起来看一个例子，熟悉一下上述流程。
 
@@ -82,7 +82,7 @@ console.log("last");
 
 ### `JavaScript`除了广义上将任务划分为同步任务和异步任务，还对异步任务进行了更精细的划分。异步任务又进一步分为微任务和宏任务。
 
-![EventLoop](./images/taskSort.jpg)
+![EventLoop](https://github.com/Yusup64/Interview-Preparation/blob/main/Browser/images/taskSort.jpg?raw=true)
 
 > - `history traversal` 任务（h5 当中的历史操作）
 > - `process.nextTick`（nodejs 中的一个异步操作）
@@ -105,4 +105,5 @@ console.log("last");
 
 # 更新一下`Event Loop`的执行顺序图：
 
-![EventLoop](./images/EventLoop2.jpg)
+![EventLoop](https://github.com/Yusup64/Interview-Preparation/blob/main/Browser/images/EventLoop2.jpg?raw=true)
+
