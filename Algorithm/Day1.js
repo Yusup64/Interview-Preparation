@@ -50,10 +50,10 @@ class LRU {
         cache.set(key, value)
     }
 }
-let lru = new LRU(2)
-lru.set(1, 1)
-lru.set(2, 2)
-lru.set(3, 3)
+// let lru = new LRU(2)
+// lru.set(1, 1)
+// lru.set(2, 2)
+// lru.set(3, 3)
 // console.log(lru);
 
 /**
@@ -159,3 +159,28 @@ function throttle_3(fn, delay) {
         }
     }
 }
+/**
+ * // 题目 最长不含重复字符的子字符串
+ * @param {String} s - 字符串
+ * @return {Number} - 最长不含重复字符的子字符串长度
+ * @example
+ * lengthOfLongestSubstring('abcabcbb') // 3
+ * */
+
+function lengthOfLongestSubstring(s) {
+    var subs = '';
+    var max = 0;
+    for (let i = 0; i < s.length; i++) {
+        if (subs.includes(s[i])) {
+            subs = subs.substring(subs.indexOf(s[i]) + 1);
+            subs += s[i];
+        } else {
+            subs += s[i];
+
+        }
+        max = Math.max(max, subs.length);
+
+    }
+    return max;
+}
+// console.log('lengthOfLongestSubstring', lengthOfLongestSubstring("bbbb")) 
