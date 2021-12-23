@@ -1,17 +1,16 @@
-let r = Buffer.from('珠');
-console.log(r.toString('base64'));
-let encodeStr = Array.from(Array(26), (v, k) => String.fromCharCode(k + 65)).join('')
-    + Array.from(Array(26), (v, k) => String.fromCharCode(k + 97)).join('')
-    + Array.from(Array(10), (v, k) => String.fromCharCode(k + 48)).join('')
-    + '+/'
+let encodeStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
-let str = '';
-r.forEach(v => {
-    str += v.toString(2);
-})
-let str2 = ''
-for (let i = 0, len = ~~str.length / 6; i < len; i++) {
-    index = parseInt((str.slice(i * 6, (i + 1) * 6)), 2);
-    str2 += encodeStr[index]
+function base64(s) {
+    let buf = Buffer.from(s);
+    let str = '';
+    buf.forEach(v => {
+        str += v.toString(2);
+    })
+    let str2 = ''
+    for (let i = 0, len = ~~str.length / 6; i < len; i++) {
+        index = parseInt((str.slice(i * 6, (i + 1) * 6)), 2);
+        str2 += encodeStr[index]
+    }
+    return str2;
 }
-console.log(str2); //base64
+// console.log(base64('珠峰'));
