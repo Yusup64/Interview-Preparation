@@ -61,13 +61,19 @@ class LinkedList {
 }
 
 let l1 = new LinkedList();
-l1.append(3);
+// l1.append(3);
+// l1.append(2);
+// l1.append(6);
+// l1.append(1, 100);
+// l1.append(4);
+// l1.append(5);
+// l1.remove(2)
+l1.append(1);
 l1.append(2);
-l1.append(6);
-l1.append(1, 100);
+l1.append(3);
 l1.append(4);
 l1.append(5);
-// l1.remove(2)
+
 
 /**
  * //题目 反转单向链表
@@ -75,9 +81,15 @@ l1.append(5);
 
 function reverseLinkedList(linkedList) {
     let head = linkedList.head;
-    if(!head) return null;
-    while(head.neaxt) {
-        let 
+    if (!head || head.next == null) return head;
+    let newHead;
+    while (head) {
+        let n = head.next;//通过n来引用链表，否则heac.next = null后面的就收回了
+        head.next = newHead //把head的next指向newHead
+        newHead = head //
+        head = n
     }
+    return newHead;
+
 }
 console.log(reverseLinkedList(l1));
