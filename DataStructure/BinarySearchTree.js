@@ -46,6 +46,20 @@ class BinarySearchNode {
         }
         traversal(this.root)
     }
+    // 非递归遍历
+    prevOrderTraversal2() {
+        let stack = [this.root]
+        let currentNode
+        while (currentNode = stack.pop()) {
+            console.log(currentNode.element);
+            if (currentNode.right) {
+                stack.push(currentNode.right)
+            }
+            if (currentNode.left) {
+                stack.push(currentNode.left)
+            }
+        }
+    }
     // 中序遍历
     inOrderTraversal() {
         function traversal(node) {
@@ -57,6 +71,20 @@ class BinarySearchNode {
         }
         traversal(this.root)
     }
+    // 非递归中序遍历
+    inOrderTraversal2() {
+        let stack = []
+        let currentNode = this.root
+        while (currentNode || stack.length) {
+            while (currentNode) {
+                stack.push(currentNode)
+                currentNode = currentNode.left
+            }
+            currentNode = stack.pop()
+            console.log(currentNode.element);
+            currentNode = currentNode.right
+        }
+    }
     // 后序遍历
     postOrderTraversal() {
         function traversal(node) {
@@ -67,6 +95,20 @@ class BinarySearchNode {
 
         }
         traversal(this.root)
+    }
+    // 非递归后序遍历
+    postOrderTraversal2() {
+        let stack = []
+        let currentNode = this.root
+        while (currentNode || stack.length) {
+            while (currentNode) {
+                stack.push(currentNode)
+                currentNode = currentNode.right
+            }
+            currentNode = stack.pop()
+            console.log(currentNode.element);
+            currentNode = currentNode.left
+        }
     }
     // 层序遍历
     levelOrderTraversal() {
@@ -97,6 +139,23 @@ class BinarySearchNode {
         }
         traversal(this.root)
     }
+    // 非遍历 反转二叉树
+    invertTree2() {
+        let stack = [this.root]
+        let currentNode
+        while (currentNode = stack.pop()) {
+            let l = currentNode.left
+            let r = currentNode.right
+            currentNode.left = r
+            currentNode.right = l
+            if (currentNode.left) {
+                stack.push(currentNode.left)
+            }
+            if (currentNode.right) {
+                stack.push(currentNode.right)
+            }
+        }
+    }
 };
 let bst = new BinarySearchNode();
 bst.append(10);
@@ -106,8 +165,9 @@ bst.append(6);
 bst.append(15);
 bst.append(22);
 bst.append(20);
-bst.invertTree();
-console.log(bst);
+// bst.invertTree();
+// console.log(bst);
+bst.prevOrderTraversal2()
 // bst.prevOrderTraversal()
-bst.prevOrderTraversal()
+// bst.prevOrderTraversal()
 // bst.levelOrderTraversal()
