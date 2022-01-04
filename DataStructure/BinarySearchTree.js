@@ -46,7 +46,7 @@ class BinarySearchNode {
         }
         traversal(this.root)
     }
-    // 非递归遍历
+    // 非递归前序遍历
     prevOrderTraversal2() {
         let stack = [this.root]
         let currentNode
