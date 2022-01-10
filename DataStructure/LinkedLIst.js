@@ -69,14 +69,18 @@ let l1 = new LinkedList();
 // l1.append(5);
 // l1.remove(2)
 l1.append(1);
+l1.append(1);
 l1.append(2);
+l1.append(2);
+l1.append(3);
+l1.append(3);
 l1.append(3);
 l1.append(4);
 l1.append(5);
 
 
 /**
- * //题目 反转单向链表
+ //题目 反转单向链表
  * */
 
 function reverseLinkedList(linkedList) {
@@ -92,4 +96,23 @@ function reverseLinkedList(linkedList) {
     return newHead;
 
 }
-console.log(reverseLinkedList(l1));
+// console.log(reverseLinkedList(l1));
+
+/**
+ //题目 删除升序链表中重复出现的所有节点[1,2,3,3,4,4,5] => [1,2,5]
+ * */
+
+function deleteDuplicates(linkedList) {
+    let head = linkedList.head
+    if (!head || head.next == null) return head;
+    while (head.next) {
+        if (head.element == head.next.element) {
+            head.next = head.next.next
+            linkedList.size--
+        }else {
+            head = head.next
+        }
+    }
+    return linkedList
+}
+console.log(deleteDuplicates(l1));

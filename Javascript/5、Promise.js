@@ -96,3 +96,61 @@ p7.then(res => {
 }).then(name => {
     console.log(name);
 })
+
+// 题目  Promise超时
+
+/**
+    * 创建两个promise对象，一个负责网络请求，另一个负责计时，如果超过指定时间，就会先回调计时的promise，代表网络超时。
+    * @param {Promise} fetch_promise    fetch请求返回的Promise
+    * @param {number} [timeout=10000]   单位：毫秒，这里设置默认超时时间为10秒
+    * @return 返回Promise
+    */
+function warp_fetch(fetch_promise, timeout = 10000) {
+    let timeout_fn = null;
+    let abort = null;
+    //创建一个超时promise
+    let timeout_promise = new Promise(function (resolve, reject) {
+        timeout_fn = function () {
+            reject('网络请求超时');
+        };
+    });
+    //创建一个终止promise
+    let abort_promise = new Promise(function (resolve, reject) {
+        abort = function () {
+            reject('请求终止');
+        };
+    });
+    //竞赛
+    let abortable_promise = Promise.race([
+        fetch_promise,
+        timeout_promise,
+        abort_promise,
+    ]);
+    //计时
+    setTimeout(timeout_fn, timeout);
+    //终止
+    abortable_promise.abort = abort;
+    return abortable_promise;
+}
+
+// 题目  Promise中断
+
+function timeoutWrapper(p, timeout = 2000) {
+    const wait = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject('请求超时')
+        }, timeout)
+    })
+    return Promise.race([p, wait])
+}
+
+function abortWrapper(p1) {
+    let abort
+    let p2 = new Promise((resolve, reject) => (abort = reject))
+    let p = Promise.race([p1, p2])
+    p.abort = abort
+    return p
+}
+const req = abortWrapper(request)
+req.then(res => console.log(res)).catch(e => console.log(e))
+setTimeout(() => req.abort('用户手动终止请求'), 2000) // 这里可以是用户主动点击
