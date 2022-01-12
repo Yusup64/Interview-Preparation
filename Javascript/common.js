@@ -1,4 +1,52 @@
-// 题目 实现bind函数
+// 题目 手写call函数
+
+Function.prototype.myCall = function (thisArg, ...args) {
+    if (typeof this !== 'function') {
+        throw new TypeError('Error');
+    }
+    let fn = this;
+    let context = thisArg;
+    if (context === undefined) {
+        context = window;
+    }
+    context.fn = fn;
+    let result = context.fn(...args);
+    delete context.fn;
+    return result;
+}
+{
+    let obj = {
+        name: 'obj',
+    }
+    function fn(a, b, ...args) {
+        console.log(a, b, args);
+        console.log(this, this.name);
+    }
+    fn.myCall(obj, 1, 2, 3);
+}
+
+// 题目 手写apply函数
+Function.prototype.myApply = function (thisArg, args) {
+    let context = thisArg || window;
+    let fn = this;
+    context.fn = fn;
+    let result = context.fn(...args);
+    delete context.fn;
+    return result;
+}
+{
+    let obj = {
+        name: 'obj',
+    }
+    function fn(a, b, ...args) {
+        console.log(a, b, args);
+        console.log(this, this.name);
+    }
+    fn.myCall(obj, 1, 2, 3);
+}
+
+
+// 题目 手写bind函数
 Function.prototype.myBind = function () {
     let [thisArg, ...args] = arguments;
     let fn = this;
@@ -52,3 +100,24 @@ function instanceof (left, right) {
     }
     return false;
 }
+// f(['ab', 'c', 'd', 'ab', 'c']) => ['ab1', 'c1', 'd', 'ab2', 'c2']
+
+function transferArr(target = []) {
+    let map = {}
+    let res = [];
+    target.forEach((item, index) => {
+        if (map[item]) {
+            map[item]++;
+        } else {
+            map[item] = 1;
+        }
+        res.push(`${item}${map[item]}`);
+    })
+    target.forEach((item, index) => {
+        if (map[item] == 1) {
+            res[index] = item;
+        }
+    })
+    return res;
+}
+console.log(transferArr(['ab', 'c', 'd', 'ab', 'c']));
