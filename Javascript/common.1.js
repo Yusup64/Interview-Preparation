@@ -100,24 +100,68 @@ function instanceof (left, right) {
     }
     return false;
 }
-// f(['ab', 'c', 'd', 'ab', 'c']) => ['ab1', 'c1', 'd', 'ab2', 'c2']
 
-function transferArr(target = []) {
-    let map = {}
-    let res = [];
-    target.forEach((item, index) => {
-        if (map[item]) {
-            map[item]++;
-        } else {
-            map[item] = 1;
+// 题目 实现最大请求 maxRequest
+class Scheduler {
+    constructor(maxNum) {
+        //等待执行的任务队列
+        this.taskList = []
+        //当前任务数
+        this.count = 0
+        //最大任务数
+        this.maxNum = maxNum
+    }
+
+    async add(promiseCreator) {
+        //当当前任务数超出最大任务数就将其加入等待执行的任务队列
+        if (this.count >= this.maxNum) {
+            await new Promise(resolve => {
+                this.taskList.push(resolve)
+            })
         }
-        res.push(`${item}${map[item]}`);
-    })
-    target.forEach((item, index) => {
-        if (map[item] == 1) {
-            res[index] = item;
+        this.count++
+        const result = await promiseCreator()
+        this.count--
+        //当其它任务执行完任务队列中还有任务没执行就将其出队并执行
+        if (this.taskList.length > 0) {
+            this.taskList.shift()()
         }
-    })
-    return res;
+        return result;
+    }
 }
-console.log(transferArr(['ab', 'c', 'd', 'ab', 'c']));
+// 模拟请求
+function request(url) {
+    return new Promise((r) => {
+        const time = Math.random() * 1000;
+        setTimeout(() => r(url), time);
+    });
+}
+
+function multiRequest(urls, maxNum) {
+    const requests = [];
+    const scheduler = new Scheduler(maxNum);
+    for (let i = 0, len = urls.length; i < len; i++) {
+        requests.push(scheduler.add(() => request(urls[i])))
+    }
+    Promise.all(requests).then((res) => res.forEach((r) => console.log(r)))
+}
+
+// 题目 输入 '1, 2, 3, 5, 7, 8, 10' 输出 '1~3, 5, 7~8, 10'
+{
+    function converter(num) {
+        var result = [];
+        var temp = num[0]
+        num.forEach((value, index) => {
+          if (value + 1 !== num[index + 1]) {
+            if (temp !== value) {
+              result.push(`${temp}~${value}`)
+            } else {
+              result.push(`${value}`)
+            }
+            temp = num[index + 1]
+          }
+        })
+        return result;
+      }
+    console.log(converter([1, 2, 3, 5, 7, 8, 10]).join(', '));
+}

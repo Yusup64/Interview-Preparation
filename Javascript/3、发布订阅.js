@@ -1,4 +1,4 @@
-// 题目 发布订阅
+// 发布订阅
 
 const { readFile } = require("fs")
 /**
@@ -31,7 +31,7 @@ event.on(data => {
     }
 })
 /**
- * 发布订阅模式
+ * //题目  发布订阅模式 EventEmitter
  * */
 class EventEmitter {
     constructor() {
