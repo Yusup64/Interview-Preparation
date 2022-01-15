@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-var strStr = function (haystack, needle) {
+var strStr = function (haystack: string | any[], needle: string | any[]) {
     let len1 = haystack.length;
     let len2 = needle.length;
     if (len2 === 0) return 0;

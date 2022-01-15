@@ -8,18 +8,26 @@
 /**
  Do not return anything, modify nums1 in-place instead.
  */
-function merge(nums1: number[], m: number, nums2: number[], n: number): void {
-    let i = m + n - 1;
-    m--;
-    n--;
-    while (m >= 0 || n >= 0) {
-        if (m < 0) {
+var merge = function (nums1: number[], m: number, nums2: number[], n: number) {
+    let i = nums1.length - 1
+    m--
+    n--
+    while (n >= 0) {
+        if (nums1[m] > nums2[n]) {
+            nums1[i--] = nums1[m--]
+        } else {
             nums1[i--] = nums2[n--]
         }
     }
-
 };
-console.log(merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3));
 
 // @lc code=end
 
+function merge1(nums1: number[], m: number, nums2: number[], n: number) {
+    for (let i = 0; i < n; i++) {
+        nums1[m] = nums2[i]
+        m++
+    }
+    nums1.sort((a, b) => a - b)
+}
+console.log(merge1([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3));
