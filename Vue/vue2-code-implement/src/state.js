@@ -30,5 +30,4 @@ function initData(vm) {
     for (let key in data) {
         proxy(vm, key, '_data')
     }
-    data.arr.push(11);
 }

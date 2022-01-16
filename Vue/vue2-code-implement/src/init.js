@@ -1,11 +1,13 @@
 import { compileToFunction } from "./compiler/index";
+import { mountComponent } from "./lifeCycle";
 import { initState } from "./state";
+import { mergeOptions, nextTick } from "./utils";
 
 function initMixin(Vue) {
     Vue.prototype._init = function (options) {
         let vm = this;
         // 把用户的选项放到vm上，这样让其他方法获取到options
-        vm.$options = options;
+        vm.$options = mergeOptions(vm.constructor.options, options);
 
         // options中有用户传入的数据
 
@@ -42,9 +44,11 @@ function initMixin(Vue) {
                 template = el.outerHTML;
             }
             let render = compileToFunction(template);
-            opts.render = render
+            opts.render = render //获取到render函数
+            mountComponent(vm)
         }
     }
+    Vue.prototype.$nextTick = nextTick
 }
 
 
