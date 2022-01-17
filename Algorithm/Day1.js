@@ -1,5 +1,5 @@
 /**
- * //题目 合并有序数组
+ * //算法 合并有序数组
  * @param {Array} arr1 - 有序数组
  * @param {Array} arr2 - 有序数组
  * @return {Array} - 合并后的有序数组
@@ -24,7 +24,7 @@ function mergeSortedArray(arr1, arr2) {
 // console.log(mergeSortedArray([1, 2, 3, 4, 5], [2, 3, 4, 5, 6]));
 
 /**
- * //题目 LRU缓存机制
+ * //算法 LRU缓存机制
  **/
 class LRU {
     constructor(max) {
@@ -57,7 +57,7 @@ class LRU {
 // console.log(lru);
 
 /**
- * //题目 防抖函数
+ * //算法 防抖函数
  * @param {Function} fn - 函数
  * @param {Number} delay - 延迟时间
  * @return {Function} - 防抖函数
@@ -73,7 +73,7 @@ function debounce(fn, delay) {
 }
 
 /**
- * //题目 节流函数 (时间戳)
+ * //算法 节流函数 (时间戳)
  * @param {Function} fn - 函数
  * @param {Number} delay - 延迟时间
  * @return {Function} - 节流函数
@@ -100,7 +100,7 @@ function throttle(fn, delay = 1000) {
     }
 }
 /**
- * //题目 节流函数 (定时器)
+ * //算法 节流函数 (定时器)
  * @param {Function} fn - 函数
  * @param {Number} delay - 延迟时间
  * @return {Function} - 节流函数
@@ -126,7 +126,7 @@ function throttle_2(fn, delay) {
 }
 
 /**
- * //题目 节流函数 (时间戳 & 定时器)
+ * //算法 节流函数 (时间戳 & 定时器)
  * @param {Function} fn - 函数
  * @param {Number} delay - 延迟时间
  * @return {Function} - 节流函数
@@ -160,7 +160,7 @@ function throttle_3(fn, delay) {
     }
 }
 /**
- * // 题目 最长不含重复字符的子字符串
+ * // 算法 最长不含重复字符的子字符串
  * @param {String} s - 字符串
  * @return {Number} - 最长不含重复字符的子字符串长度
  * @example

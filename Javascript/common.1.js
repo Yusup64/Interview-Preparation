@@ -1,4 +1,4 @@
-// 题目 手写call函数
+// JS语言 手写call函数
 
 Function.prototype.myCall = function (thisArg, ...args) {
     if (typeof this !== 'function') {
@@ -25,7 +25,7 @@ Function.prototype.myCall = function (thisArg, ...args) {
     fn.myCall(obj, 1, 2, 3);
 }
 
-// 题目 手写apply函数
+// JS语言 手写apply函数
 Function.prototype.myApply = function (thisArg, args) {
     let context = thisArg || window;
     let fn = this;
@@ -46,7 +46,7 @@ Function.prototype.myApply = function (thisArg, args) {
 }
 
 
-// 题目 手写bind函数
+// JS语言 手写bind函数
 Function.prototype.myBind = function () {
     let [thisArg, ...args] = arguments;
     let fn = this;
@@ -66,7 +66,7 @@ let obj = {
 // let f1 = new f();
 // f.bind(obj, 1, 2)(3, 4, 5);
 
-// 题目 手写new操作符
+// JS语言 手写new操作符
 /* 
     从上面介绍中，我们可以看到new关键字主要做了以下的工作：
     创建一个新的对象obj
@@ -88,7 +88,7 @@ let obj = {
 }
 
 
-// 题目 手写instanceOf
+// JS语言 手写instanceOf
 
 function instanceof (left, right) {
     let proto = left.__proto__;
@@ -101,7 +101,7 @@ function instanceof (left, right) {
     return false;
 }
 
-// 题目 实现最大请求 maxRequest
+// JS语言 实现最大请求 maxRequest
 class Scheduler {
     constructor(maxNum) {
         //等待执行的任务队列
@@ -146,7 +146,7 @@ function multiRequest(urls, maxNum) {
     Promise.all(requests).then((res) => res.forEach((r) => console.log(r)))
 }
 
-// 题目 输入 '1, 2, 3, 5, 7, 8, 10' 输出 '1~3, 5, 7~8, 10'
+// 算法 输入 '1, 2, 3, 5, 7, 8, 10' 输出 '1~3, 5, 7~8, 10'
 {
     function converter(num) {
         var result = [];

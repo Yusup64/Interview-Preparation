@@ -97,7 +97,7 @@ p7.then(res => {
     console.log(name);
 })
 
-// 题目  Promise超时
+// JS语言  Promise超时
 
 /**
     * 创建两个promise对象，一个负责网络请求，另一个负责计时，如果超过指定时间，就会先回调计时的promise，代表网络超时。
@@ -133,7 +133,7 @@ function warp_fetch(fetch_promise, timeout = 10000) {
     return abortable_promise;
 }
 
-// 题目  Promise中断
+// JS语言  Promise中断
 
 function timeoutWrapper(p, timeout = 2000) {
     const wait = new Promise((resolve, reject) => {

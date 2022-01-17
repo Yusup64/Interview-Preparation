@@ -31,7 +31,7 @@ event.on(data => {
     }
 })
 /**
- * //题目  发布订阅模式 EventEmitter
+ * //JS语言  发布订阅模式 EventEmitter
  * */
 class EventEmitter {
     constructor() {

@@ -80,7 +80,7 @@ l1.append(5);
 
 
 /**
- //题目 反转单向链表
+ //算法 反转单向链表
  * */
 
 function reverseLinkedList(linkedList) {
@@ -99,7 +99,7 @@ function reverseLinkedList(linkedList) {
 // console.log(reverseLinkedList(l1));
 
 /**
- //题目 删除升序链表中重复出现的所有节点[1,2,3,3,4,4,5] => [1,2,5]
+ //算法 删除升序链表中重复出现的所有节点[1,2,3,3,4,4,5] => [1,2,5]
  * */
 
 function deleteDuplicates(linkedList) {

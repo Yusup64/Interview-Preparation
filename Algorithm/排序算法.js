@@ -1,5 +1,5 @@
 /**
- * //题目 冒泡排序
+ * //算法 冒泡排序
  * @param {number[]} arr
  * @return {number[]}
  **/
@@ -20,7 +20,7 @@ function bubbleSort(arr = []) {
 bubbleSort(randomArr)
 
 /**
- * //题目 选择排序
+ * //算法 选择排序
  * @param {number[]} arr
  * @return {number[]}
 */
@@ -44,7 +44,7 @@ function selectSort(arr = []) {
 selectSort(randomArr)
 
 /**
- * //题目 插入排序
+ * //算法 插入排序
  * @param {number[]} arr
  * @return {number[]}
  * */
@@ -64,7 +64,7 @@ function insertSort(arr = []) {
 insertSort(randomArr);
 
 /**
- * //题目 归并排序
+ * //算法 归并排序
  * @param {number[]} arr
  * @return {number[]}
 */
@@ -94,7 +94,7 @@ mergeSort(randomArr);
 console.timeEnd('mergeSort');
 
 /**
- * //题目 快速排序
+ * //算法 快速排序
  * @param {number[]} arr
  * @return {number[]}
  **/
