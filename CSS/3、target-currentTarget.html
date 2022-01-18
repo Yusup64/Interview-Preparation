@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box1 {
+        width: 600px;
+        height: 600px;
+        background: red;
+    }
+
+    .box2 {
+        width: 400px;
+        height: 400px;
+        background: green;
+    }
+
+    .box3 {
+        width: 200px;
+        height: 200px;
+        background: blue;
+    }
+</style>
+
+<body>
+
+    <div class="box1">
+        <div class="box2">
+            <div class="box3"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        document.querySelector('.box1').addEventListener('click', function (e) {
+            e.stopPropagation();
+            console.log('box1');
+        })
+        document.querySelector('.box2').addEventListener('click', function (e) {
+            e.stopPropagation();
+            console.log('box2');
+        })
+        document.querySelector('.box3').addEventListener('click', function (e) {
+            e.stopPropagation();
+            console.log('box3');
+        })
+        fetch('http://localhost:3000/')
+            .then(res => res.json())
+            .then(data => console.log(data))
+    </script>
+</body>
+
+</html>

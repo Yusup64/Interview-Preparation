@@ -2,6 +2,8 @@
  * //算法 冒泡排序
  * @param {number[]} arr
  * @return {number[]}
+ * 算法复杂度 O(n^2)
+ * 空间复杂度 O(1)
  **/
 let randomArr = Array.from({ length: 100000 }, () => Math.floor(Math.random() * 1000));
 function bubbleSort(arr = []) {
@@ -23,6 +25,8 @@ bubbleSort(randomArr)
  * //算法 选择排序
  * @param {number[]} arr
  * @return {number[]}
+ * 算法复杂度 O(n^2)
+ * 空间复杂度 O(1)
 */
 function selectSort(arr = []) {
     console.time('selectSort');
@@ -47,6 +51,8 @@ selectSort(randomArr)
  * //算法 插入排序
  * @param {number[]} arr
  * @return {number[]}
+ * 算法复杂度 O(n^2)
+ * 空间复杂度 O(1)
  * */
 function insertSort(arr = []) {
     console.time('insertSort');
@@ -67,6 +73,8 @@ insertSort(randomArr);
  * //算法 归并排序
  * @param {number[]} arr
  * @return {number[]}
+ * 算法复杂度 O(nlogn)
+ * 空间复杂度 O(n)
 */
 function mergeSort(arr = []) {
     function merge(left, right) {
@@ -97,6 +105,8 @@ console.timeEnd('mergeSort');
  * //算法 快速排序
  * @param {number[]} arr
  * @return {number[]}
+ * 算法复杂度 O(nlogn)
+ * 空间复杂度 O(logn)
  **/
 function quickSort(arr = []) {
     function sort(left, right) {
