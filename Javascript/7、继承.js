@@ -1,4 +1,3 @@
-//题目 es6继承
 {
     class School {
         constructor(title) {

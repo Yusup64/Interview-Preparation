@@ -58,3 +58,18 @@ var longestCommonPrefix = function (strs) {
 };
 console.log(longestCommonPrefix(['aaafsd', 'aawwewer', 'aaddfff']));
 console.log(longestCommonPrefix([""]));
+
+// JS语言 深拷贝
+function deepClone(source, target = {}) {
+    for (let key in source) {
+        if (source.hasOwnProperty(key)) {
+            if (typeof source[key] === 'object') {
+                target[key] = Array.isArray(source[key]) ? [] : {};
+                deepClone(source[key], target[key]);
+            } else {
+                target[key] = source[key];
+            }
+        }
+    }
+    return target;
+}

@@ -115,4 +115,22 @@ function deleteDuplicates(linkedList) {
     }
     return linkedList
 }
-console.log(deleteDuplicates(l1));
+// console.log(deleteDuplicates(l1));
+
+/**
+//算法  判断链表是否有环
+ * */
+function hasCycle(linkedList) {
+    let head = linkedList.head;
+    if (!head || head.next == null) return false;
+    let fast = head.next;
+    let slow = head;
+    while (fast && fast.next) {
+        if (fast == slow) {
+            return true
+        }
+        fast = fast.next.next;
+        slow = slow.next;
+    }
+    return false
+}

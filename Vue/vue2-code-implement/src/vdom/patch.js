@@ -4,7 +4,7 @@ import { callHooks } from "../lifeCycle";
 export function patch(oldVnode, vnode) {
     // 删除老节点，根据新节点替换老节点
     // console.log(el, vnode);
-    const isRealElement = oldVnode instanceof HTMLElement;
+    const isRealElement = oldVnode.nodeType == 1;
     if (isRealElement) {
         let ele = createEle(vnode); //根据虚拟节点创建真实节点
         let parentNode = oldVnode.parentNode;

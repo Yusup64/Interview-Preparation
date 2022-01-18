@@ -1,4 +1,6 @@
-// 被观察者
+// JS语言 观察者模式
+
+//被观察者
 class Subject {
     /** @type {Obserber[]} */
     observers = []
