@@ -11,7 +11,7 @@
 // 只有抛出异常，或者返回一个失败的promise才会走失败 其他的都是成功
 
 const { readFile } = require('fs')
-let Promise = require('./Promise')
+// let Promise = require('./Promise')
 
 /* let p = new Promise((resolve, reject) => {
     resolve(100);
@@ -54,21 +54,21 @@ promise2.then(res => {
     console.log(res);
 }) */
 
-let p1 = Promise.resolve(100);
-let p2 = Promise.resolve(200);
-let p3 = Promise.resolve(new Promise((resolve) => {
-    setTimeout(() => {
-        resolve('我是P3,需要1500ms')
-    }, 1500);
-}));
-let p4 = Promise.resolve(400);
-let p5 = Promise.resolve(500);
-// let p6 = Promise.reject('想的美');
-let p7 = Promise.resolve(new Promise((resolve) => {
-    setTimeout(() => {
-        resolve('我是P7,需要1200ms')
-    }, 1200);
-}));
+// let p1 = Promise.resolve(100);
+// let p2 = Promise.resolve(200);
+// let p3 = Promise.resolve(new Promise((resolve) => {
+//     setTimeout(() => {
+//         resolve('我是P3,需要1500ms')
+//     }, 1500);
+// }));
+// let p4 = Promise.resolve(400);
+// let p5 = Promise.resolve(500);
+// // let p6 = Promise.reject('想的美');
+// let p7 = Promise.resolve(new Promise((resolve) => {
+//     setTimeout(() => {
+//         resolve('我是P7,需要1200ms')
+//     }, 1200);
+// }));
 // let promises = [p1, p2, p3, p4, p5, p6]
 /* Promise.all(promises).then(res => {
     console.log(res);
@@ -87,15 +87,15 @@ Promise.allSettled(promises).then(res => {
 }).finally((res) => {
     console.log('执行了', res);
 }) */
-p7.then(res => {
-    console.log('res');
-}).finally(() => {
-    console.log('结束了呀');
-}).then(_ => {
-    return 'Yusup'
-}).then(name => {
-    console.log(name);
-})
+// p7.then(res => {
+//     console.log('res');
+// }).finally(() => {
+//     console.log('结束了呀');
+// }).then(_ => {
+//     return 'Yusup'
+// }).then(name => {
+//     console.log(name);
+// })
 
 // JS语言  Promise超时
 
@@ -151,6 +151,35 @@ function abortWrapper(p1) {
     p.abort = abort
     return p
 }
-const req = abortWrapper(request)
-req.then(res => console.log(res)).catch(e => console.log(e))
-setTimeout(() => req.abort('用户手动终止请求'), 2000) // 这里可以是用户主动点击
+// const req = abortWrapper(request)
+// req.then(res => console.log(res)).catch(e => console.log(e))
+// setTimeout(() => req.abort('用户手动终止请求'), 2000) // 这里可以是用户主动点击
+
+// 模拟发送请求 ，只取最后一次的结果，前面的promise还没完成的话就取消
+let count = 0;
+function wrap(promise) {
+    return function () {
+        let abort;
+        let p2 = new Promise((resolve, reject) => (abort = reject))
+        let p = Promise.race([promise, p2])
+        p.abort = abort
+        return new Promise((resolve, reject) => {
+            promise.apply(this, arguments).then(res => {
+                resolve(res);
+            }).catch(err => {
+                reject(err);
+            })
+        })
+    }
+}
+function sendRequest() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(++count)
+        }, 1000)
+    });
+}
+let newWrap = wrap(sendRequest);
+newWrap().then(console.log)
+newWrap().then(console.log)
+newWrap().then(console.log) //输出3
