@@ -73,3 +73,73 @@ function deepClone(source, target = {}) {
     }
     return target;
 }
+// JS语言 u.console('breakfast').setTimeout(3000).console('lunch').setTimeout(3000).console('dinner')，实现这个u
+class U {
+    constructor() {
+        this.promise = Promise.resolve();
+    }
+    console(msg) {
+        this.promise = this.promise.then(() => {
+            console.log(msg);
+        });
+        return this;
+    }
+    setTimeout(time) {
+        this.promise = this.promise.then(() => {
+            return new Promise((resolve) => {
+                setTimeout(resolve, time);
+            });
+        });
+        return this;
+    }
+}
+let u = new U();
+u.console('breakfast').setTimeout(3000).console('lunch').setTimeout(3000).console('dinner')
+/**
+ * 205. 同构字符串
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isIsomorphic = function (s, t) {
+    let m1 = {};
+    let m2 = {};
+    for (let i = 0, len = s.length; i < len; i++) {
+        if (m1[s[i]] !== m2[t[i]]) {
+            return false;
+        } else {
+            m1[s[i]] = i;
+            m2[t[i]] = i;
+        }
+    }
+    return true
+}
+
+/**
+ * 20. 有效的括号
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValidBrackets = function (s) {
+    const n = s.length;
+    if (n % 2 === 1) {
+        return false;
+    }
+    let map = {
+        ')': '(',
+        ']': '[',
+        '}': '{'
+    };
+    let stack = [];
+    for (let ch of s) {
+        if (map[ch]) {
+            if (!stack.length || stack[stack.length - 1] !== map[ch]) return false;
+            stack.pop();
+        } else {
+            stack.push(ch);
+        }
+    }
+    return !stack.length;
+};
+
+// console.log(isValidBrackets('{[]}'));
