@@ -23,16 +23,22 @@ function shuffle(arr) {
             5=1+1+1+1+1
  * */
 function coinChange(amount, coins) {
-    let count = 0;
-    function dp(remain) {
-        for (let i = 0; i < coins.length; i++) {
-            if (remain - coins[i] >= 0) {
-                count++;
-                dp(remain - coins[i])
-            }
+    if (amount < 0 || !coins || coins.length === 0) return 0;
+    const dp = new Array(amount + 1).fill(0);
+    dp[0] = 1;
+    for (let num of coins) {
+        for (let i = num; i <= amount; i++) {
+            dp[i] += dp[i - num];
         }
     }
-    dp(amount);
-    return count
+    return dp[amount];
 }
-console.log(coinChange(5, [1, 2, 5]));
+// console.log(coinChange(5, [1, 2, 5]))
+// console.log(coinChange(5, [2, 3]));
+var a = 10
+let obj = {
+    a: 20,
+    fn: () => { console.log(this.a) }
+}
+var aa = { a: 30 }
+obj.fn.call(aa)

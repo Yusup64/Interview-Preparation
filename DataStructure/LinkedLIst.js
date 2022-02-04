@@ -69,12 +69,12 @@ let l1 = new LinkedList();
 // l1.append(5);
 // l1.remove(2)
 l1.append(1);
-l1.append(1);
+// l1.append(1);
 l1.append(2);
-l1.append(2);
+// l1.append(2);
 l1.append(3);
 l1.append(3);
-l1.append(3);
+l1.append(4);
 l1.append(4);
 l1.append(5);
 
@@ -115,7 +115,8 @@ function deleteDuplicates(linkedList) {
     }
     return linkedList
 }
-// console.log(deleteDuplicates(l1));
+console.log(deleteDuplicates(l1));
+
 
 /**
 //算法  判断链表是否有环

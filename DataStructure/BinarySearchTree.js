@@ -91,8 +91,8 @@ class BinarySearchNode {
         function traversal(node) {
             if (!node) return
             traversal(node.left)
-            console.log('node', node.element);
             traversal(node.right)
+            console.log('node', node.element);
 
         }
         traversal(this.root)
