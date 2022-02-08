@@ -116,9 +116,14 @@ var isIsomorphic = function (s, t) {
 }
 
 /**
- * 20. 有效的括号
+ * //算法 20. 有效的括号 ({[]})
  * @param {string} s
  * @return {boolean}
+ * @example 
+ * ```javascript
+ * isValidBrackets('({[]})') // true
+ * isValidBrackets('[(])') // false
+ * ```
  */
 var isValidBrackets = function (s) {
     const n = s.length;

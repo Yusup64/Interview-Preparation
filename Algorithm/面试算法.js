@@ -1,4 +1,4 @@
-// 算法 洗牌算法
+// 算法 洗牌算法shuffle
 function shuffle(arr) {
     var result = [],
         random;

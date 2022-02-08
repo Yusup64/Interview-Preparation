@@ -14,3 +14,9 @@ function base64(s) {
     return str2;
 }
 // console.log(base64('珠峰'));
+// console.log(Buffer.from('珠峰', 'utf-8').toString('base64'));
+
+let ip = '180.101.49.11';
+
+ip = ip.split('.').map(item => Number(item).toString(16)).join('');
+console.log(parseInt(ip, 16));
