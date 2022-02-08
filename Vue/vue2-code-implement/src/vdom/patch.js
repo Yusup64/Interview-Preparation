@@ -1,4 +1,4 @@
-import { isSameVnode } from ".";
+import { isSameVnode } from "./index";
 import { callHooks } from "../lifeCycle";
 
 export function patch(oldVnode, vnode) {
@@ -18,10 +18,10 @@ export function patch(oldVnode, vnode) {
             return oldVnode.parentNode.replaceChild(createEle(vnode), oldVnode.el);
         }
         // 2、父级节点没变
-        let el = vnode.el = oldVnode.el;
-        if (!oldVnode.tag) { //文本节点
+        let el = vnode.el = oldVnode.el; // 复用节点
+        if (oldVnode && !oldVnode.tag) { //文本节点
             if (oldVnode.text !== vnode.text) {
-                return el.nodeValue = vnode.text;
+                return el.textContent = vnode.text;
             }
         }
         // 3、元素
@@ -38,20 +38,20 @@ export function patch(oldVnode, vnode) {
                 el.appendChild(createEle(child));
             })
         } else { // 3、老的有儿子，新的有儿子
-            updaChildren(oldChildren, newChildren);
+            updaChildren(el, oldChildren, newChildren);
         }
+        return el;
     }
 }
 
 function createEle(vnode) {
     let { tag, data, children, text, vm } = vnode;
     if (typeof tag === 'string') {
-        let el = document.createElement(tag);
+        vnode.el = document.createElement(tag);
         // 如果有data，则添加属性
-        vnode.el = el;
         updateProperties(vnode, data);
         children.forEach(child => {
-            el.appendChild(createEle(child))
+            vnode.el.appendChild(createEle(child))
         })
     } else {
         vnode.el = document.createTextNode(text);
@@ -80,6 +80,7 @@ function updateProperties(vnode, oldProps = {}) { //后续diff算法的时候再
                 el.style[syleProp] = newStyles[syleProp];
             }
         } else {
+            if(!el) return;
             el.setAttribute(key, newProps[key]);
         }
     }
@@ -90,7 +91,7 @@ function updateProperties(vnode, oldProps = {}) { //后续diff算法的时候再
     }
 }
 // 题目 vue2.0中的diff算法
-function updaChildren(newChildren, oldChildren) {
+function updaChildren(el, newChildren, oldChildren) {
     // vue内部优化（尽量提升性能，）
     let oldStartIndex = 0; //老的起始索引
     let oldStartVnode = oldChildren[0]; //老的起始节点

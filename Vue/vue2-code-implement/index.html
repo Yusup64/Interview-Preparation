@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./dist/vue.js"></script>
+
+<body>
+    <div id="app">
+        <h1 id="aaa">{{message}}</h1>
+        <ul>
+            <li key="a">{{ list[0] }}</li>
+            <li key="b">{{ list[1] }}</li>
+            <li key="c">{{ list[2] }}</li>
+            <li key="d">{{ list[3] }}</li>
+        </ul>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    message: 'Hello Vue!',
+                    age: 22,
+                    name: '张三',
+                    occupation: '前端工程师',
+                    isShow: true,
+                    list: [1, 2, 3, 4]
+                }
+            }
+        });
+        setTimeout(() => {
+            vm.list = [2, 3, 4, 1]
+        }, 3500);
+    </script>
+</body>
+
+</html>
