@@ -90,7 +90,7 @@ let obj = {
 
 // JS语言 手写instanceOf
 
-function instanceof (left, right) {
+function instanceOf (left, right) {
     let proto = left.__proto__;
     while (proto) {
         if (proto === right.prototype) {
