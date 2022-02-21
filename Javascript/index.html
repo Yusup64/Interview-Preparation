@@ -1,13 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <!-- <script src="./7、继承.js"></script> -->
     <script src="./8、decorator.out.js"></script>
 </body>
+<style>
+    li {
+        list-style-type: none;
+    }
+</style>
+<div id="app">
+</div>
+<script>
+    Element.prototype.insertAfter = function (element, target) {
+        console.log(element, target);
+        target.parentNode.insertBefore(element, target.nextSiblingElement)
+    }
+    let body = document.querySelector('body');
+    let fragment = document.createDocumentFragment();
+    let map = {};
+    console.time('insert')
+    for (var i = 0; i < 100; i++) {
+        let el = document.createElement('li');
+        el.textContent = i
+        map[i] = el
+        fragment.appendChild(el)
+    }
+    body.appendChild(fragment)
+    console.timeEnd('insert')
+    setTimeout(() => {
+        console.time('move')
+        for (var i = 0; i < 50; i++) {
+            let left = map[i]
+            let right = map[99 - i];
+            body.insertBefore(right, left)
+            body.insertBefore(left, map[(99 - i - 1)])
+        }
+        console.timeEnd('move')
+    }, 2000);
+</script>
+<script>
+</script>
+
 </html>

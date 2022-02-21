@@ -4,7 +4,7 @@ let id = 0;
 export default class Watcher {
     constructor(vm, fn, cb, options) {
         this.vm = vm;
-        this.fn = fn;
+        this.fn = fn; //页面渲染逻辑
         this.cb = cb;
         this.options = options;
 

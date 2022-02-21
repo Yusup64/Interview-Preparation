@@ -1,5 +1,5 @@
 import { compileToFunction } from "./compiler/index";
-import { mountComponent } from "./lifeCycle";
+import { callHooks, mountComponent } from "./lifeCycle";
 import { initState } from "./state";
 import { mergeOptions, nextTick } from "./utils";
 
@@ -10,9 +10,9 @@ function initMixin(Vue) {
         vm.$options = mergeOptions(vm.constructor.options, options);
 
         // options中有用户传入的数据
-
+        callHooks(vm ,'beforeCreate')
         initState(vm);
-
+        callHooks(vm ,'created')
         if (vm.$options.el) {
             // 数据挂载到页面上
 

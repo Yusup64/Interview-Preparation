@@ -165,3 +165,37 @@ function multiRequest(urls, maxNum) {
       }
     console.log(converter([1, 2, 3, 5, 7, 8, 10]).join(', '));
 }
+
+function sum(m) {
+    function temp(n) {
+        m += n;
+        return temp;
+    }
+    /* temp.toString = function () {
+        return m;
+    } */
+    temp[Symbol.toPrimitive] = function (hint) {
+        return m;
+    };
+    temp.valueOf = function () {
+        return m;
+    }
+    return temp;
+}
+sum(1)(2)(3)(4)(5)(6)(7)(8)(9)(10);
+
+/**
+ // JS语言 setTimeout实现setInterval
+ * */
+function mySetInterval(fn, time) {
+    let timer = null;
+    function temp() {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            fn();
+            temp();
+        }, time)
+    }
+    temp();
+}
+// mySetInterval(() => console.log('setInterval'), 200);

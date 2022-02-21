@@ -8,16 +8,18 @@
     <title>Document</title>
 </head>
 <script src="./dist/vue.js"></script>
+<!-- <ul>
+    <li key="a">{{ list[0] }}</li>
+    <li key="b">{{ list[1] }}</li>
+    <li key="c">{{ list[2] }}</li>
+    <li key="d">{{ list[3] }}</li>
+</ul> -->
 
 <body>
     <div id="app">
         <h1 id="aaa">{{message}}</h1>
-        <ul>
-            <li key="a">{{ list[0] }}</li>
-            <li key="b">{{ list[1] }}</li>
-            <li key="c">{{ list[2] }}</li>
-            <li key="d">{{ list[3] }}</li>
-        </ul>
+        <h2>{{message}}</h2>
+        <h3>AGE:{{age}}</h3>
     </div>
     <script>
         let vm = new Vue({
@@ -31,11 +33,23 @@
                     isShow: true,
                     list: [1, 2, 3, 4]
                 }
-            }
+            },
+            /* beforeCreate() {
+                console.log('app--beforeCreate');
+            },
+            created() {
+                console.log('app--created');
+            },
+            beforeMount() {
+                console.log('app--beforeMount');
+            },
+            mounted() {
+                console.log('app--mounted');
+            }, */
         });
-        setTimeout(() => {
-            vm.list = [2, 3, 4, 1]
-        }, 3500);
+        // setTimeout(() => {
+        //     vm.list = [2, 3, 4, 1]
+        // }, 3500);
     </script>
 </body>
 

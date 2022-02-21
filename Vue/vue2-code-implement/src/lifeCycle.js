@@ -2,17 +2,17 @@ import Watcher from "./observe/watcher";
 import { patch } from "./vdom/patch";
 
 export function mountComponent(vm) {
+    callHooks(vm, 'beforeMount')
     let updateComponent = () => {
         vm._update(vm._render());
     }
-    updateComponent();
-    callHooks(vm, 'beforeCreate');
+    // updateComponent();
     // 每个组件都有自己的渲染watcher
-    new Watcher(vm, updateComponent, () => {
+    vm._watchers = new Watcher(vm, updateComponent, () => {
         updateComponent()
-        callHooks(vm, 'created');
     }, true);
-    callHooks(vm, 'mounted');
+    callHooks(vm, 'mounted')
+    return vm;
 }
 
 export function lifeCycleMixin(Vue) {
