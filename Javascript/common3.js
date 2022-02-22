@@ -44,3 +44,24 @@ class LazyMan {
     }
 }
 new LazyMan('Tony').eat('lunch').sleep(5).eat('dinner').sleep(10).eat('junk food');
+
+/**
+ * @description 找数组中第二大的值
+ * */
+// https://acm.nowcoder.com/discuss/610561?source_id=discuss_terminal_discuss_sim_nctrack
+function secondLargest(arr) {
+    let max = 0;
+    let second = -1;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > max) {
+            second = max;
+            max = arr[i];
+        } else {
+            if (arr[i] > second) {
+                second = arr[i];
+            }
+        }
+    }
+    return second;
+}
+console.log(secondLargest([4, 7, 2, 1, 9, 3, 6, 8, 5, 11])); // 9

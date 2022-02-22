@@ -38,3 +38,16 @@ const curring = (fn, ...args) => args.length >= fn.length ? fn(...args) : (...ar
 function sum(a, b, c, d) {
     return a + b + c + d;
 }
+{
+    // 检测是否Array
+    let arr = [1, 2, 3];
+    console.log(Array.isArray(arr));
+    console.log(({}).toString.call(arr) === '[object Array]');
+    console.log(arr instanceof Array);
+    console.log(arr.constructor === Array);
+    console.log(Object.getPrototypeOf(arr) === Array.prototype);
+    console.log(Reflect.getPrototypeOf(arr) === Array.prototype);
+    console.log(arr.__proto__ === Array.prototype);
+    console.log(typeof arr === 'object' && arr !== null && !Object.is(arr));
+    console.log(Array.prototype.isPrototypeOf(arr));
+}

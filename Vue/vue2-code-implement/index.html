@@ -47,10 +47,24 @@
                 console.log('app--mounted');
             }, */
         });
+        setTimeout(() => {
+            function myLoopFn() {
+                let sum = 0;
+                console.time('sum');
+                for (let i = 0; i < 200000000; i++) {
+                    sum += i;
+                }
+                console.timeEnd('sum');
+                console.log(sum);
+            }
+            vm.age = '1';
+            vm.age = '2';
+            myLoopFn();
+            vm.age = '3';
+        }, 2000);
         // setTimeout(() => {
         //     vm.list = [2, 3, 4, 1]
         // }, 3500);
     </script>
 </body>
-
 </html>

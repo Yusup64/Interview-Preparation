@@ -10,7 +10,7 @@
 
 <body>
     <!-- <script src="./7、继承.js"></script> -->
-    <script src="./8、decorator.out.js"></script>
+    <!-- <script src="./8、decorator.out.js"></script> -->
 </body>
 <style>
     li {
@@ -19,7 +19,7 @@
 </style>
 <div id="app">
 </div>
-<script>
+<!-- <script>
     Element.prototype.insertAfter = function (element, target) {
         console.log(element, target);
         target.parentNode.insertBefore(element, target.nextSiblingElement)
@@ -46,8 +46,13 @@
         }
         console.timeEnd('move')
     }, 2000);
-</script>
+</script> -->
 <script>
+    setTimeout(() => {
+        let worker = new Worker('./11、web-worker.js');
+        worker.onmessage = function (e) {
+            console.log(e.data);
+        }
+    }, 3000);
 </script>
-
 </html>
