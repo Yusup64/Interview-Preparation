@@ -1,4 +1,4 @@
-## cookie 和 session/sessionStorage/localStorage/indexDB
+## cookie 和 session /sessionStorage /localStorage /indexDB
 
 > cookie
 
