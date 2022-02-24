@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<script crossorigin="anonymous"
+    integrity="sha512-pSyYzOKCLD2xoGM1GwkeHbdXgMRVsSqQaaUoHskx/HF09POwvow2VfVEdARIYwdeFLbu+2FCOTRYuiyeGxXkEg=="
+    src="https://lib.baomitu.com/vue/2.6.14/vue.js"></script>
+<!-- <script crossorigin="anonymous"
+    integrity="sha512-i48GtNrU5tVNKFkvIT3nArzgcIYGLxb0t6Ok+yu6yybHksvifmC+mmT2c3II7PZgUsA5sFnxROrkeM5Yt46g3A=="
+    src="//lib.baomitu.com/vuex/3.6.2/vuex.js"></script> -->
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in list">{{item}}</li>
+        </ul>
+        <div>
+            <child />
+        </div>
+        <h1>{{$store.state.count}}</h1>
+        <h1>{{$store.getters.doubleCount}}</h1>
+        <input v-model="anotherCount" />
+        <button @click="change">+1</button>
+    </div>
+</body>
+<script type="module">
+    import Vuex from './implement/index.js'
+    Vue.use(Vuex);
+
+    let store = new Vuex.Store({
+        state: {
+            msg: 'Store',
+            list: [1, 2, 3],
+            count: 1
+        },
+        getters: {
+            doubleCount(state) {
+                return state.count * 2
+            }
+        },
+        mutations: {
+            change(state, value) {
+                state.count++;
+            }
+        },
+        actions: {
+            change({ commit }) {
+                setTimeout(() => {
+                    commit('change', 1, 2, 3);
+                }, 300);
+            }
+        }
+    });
+    Vue.component('child', {
+        template: `<div>{{msg}}</div>`,
+        data() {
+            return {
+                msg: 'child'
+            }
+        },
+    })
+    let vm = new Vue({
+        el: '#app',
+        store,
+        data() {
+            return {
+                theme: 'dark',
+                textColor: '#fff',
+                bgColor: '#000',
+                list: Array.from({ length: 10 }, (v, k) => k)
+            }
+        },
+        methods: {
+            change() {
+                // this.$store.dispatch('change', 2)
+                this.$store.commit('change', 2, 1, 3)
+            }
+        },
+        mounted() {
+            console.log(this.$store);
+        },
+        computed: {
+            anotherCount() {
+                return this.$store.state.count
+            }
+        }
+    })
+</script>
+
+</html>
