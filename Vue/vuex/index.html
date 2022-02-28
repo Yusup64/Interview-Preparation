@@ -82,6 +82,9 @@
                 this.$store.commit('change', 2, 1, 3)
             }
         },
+        beforeCreate() {
+            console.log('beforeCreate', this.theme, this);
+        },
         mounted() {
             console.log(this.$store);
         },

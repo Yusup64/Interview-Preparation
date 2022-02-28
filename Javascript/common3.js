@@ -43,7 +43,7 @@ class LazyMan {
         return this;
     }
 }
-new LazyMan('Tony').eat('lunch').sleep(5).eat('dinner').sleep(10).eat('junk food');
+// new LazyMan('Tony').eat('lunch').sleep(5).eat('dinner').sleep(10).eat('junk food');
 
 /**
  * @description 找数组中第二大的值
@@ -64,4 +64,83 @@ function secondLargest(arr) {
     }
     return second;
 }
-console.log(secondLargest([4, 7, 2, 1, 9, 3, 6, 8, 5, 11])); // 9
+// console.log(secondLargest([4, 7, 2, 1, 9, 3, 6, 8, 5, 11])); // 9
+
+
+function isType(constructorFn) {
+    return function (value) {
+        return value.constructor === constructorFn
+    }
+}
+
+let isString = isType(String);
+let isRegExp = isType(RegExp);
+let isArray = isType(Array);
+let isObject = isType(Object);
+let isDomElement = (o) => o instanceof Element && o.nodeType === 1; // 判断是否是dom元素
+
+let reg = /\d+/;
+console.log(isString('123')); // true
+console.log(isRegExp(reg)); // true
+
+function deepClone(source) {
+    if (isArray(source)) {
+        return source.map(item => deepClone(item));
+    } else if (isObject(source)) {
+        let target = {};
+        for (let key in source) {
+            if (source.hasOwnProperty(key)) {
+                target[key] = deepClone(source[key]);
+            }
+        }
+        return target;
+    } else if (isDomElement(source)) {
+        return source.cloneNode(true);
+    }
+    else {
+        return source;
+    }
+}
+let obj = {
+    a: 1,
+    b: {
+        c: 2,
+        d: {
+            e: 3
+        }
+    }
+}
+// let obj2 = deepClone(obj);
+// console.log(obj2); // { a: 1, b: { c: 2, d: { e: 3 } } }
+
+/** @typedef {{name: string, age: number, child: Person[]}} Person */
+
+// /** @type {Person} */
+// let obj3 = {
+//     name: '张三',
+//     age: 20,
+//     child: [
+//         {
+//             name: '张三'
+//         }
+//     ]
+// };
+
+class TrafficLight {
+    constructor() {
+        this.task = Promise.resolve();
+    }
+    setColor(color, time) {
+        this.task = this.task.then(() => {
+            return new Promise((resolve, reject) => {
+                console.log(`${color} light`);
+                setTimeout(() => {
+                    resolve();
+                }, time * 1000)
+            })
+        })
+        return this
+    }
+}
+let light = new TrafficLight();
+light.setColor('red', 2).setColor('yellow', 1).setColor('green', 3);

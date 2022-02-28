@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<style>
+    ul,
+    li {
+        list-style-type: none;
+    }
+
+    ul {
+        height: 300px;
+        width: 800px;
+        border: 1px solid #ccc;
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+    }
+
+    li {
+        flex-basis: 100px;
+        position: relative;
+    }
+
+    li div {
+        background: red;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 160px;
+    }
+</style>
+
+<body>
+    <ul>
+        <li>
+            <div>1</div>
+        </li>
+        <li>
+            <div>1</div>
+        </li>
+        <li>
+            <div>1</div>
+        </li>
+        <li>
+            <div>1</div>
+        </li>
+        <li>
+            <div>1</div>
+        </li>
+    </ul>
+    <button id="btn" onclick="changeHeight(this)">修改高度</button>
+</body>
+<script>
+    let ele = document.querySelectorAll("li div")[3];
+    function changeHeight(e) {
+        ele.style.height = "200px";
+    }
+
+    setTimeout(() => {
+        btn.click();
+        setTimeout(() => {
+            ele.style.background = "green";
+        }, 100);
+    }, 100);
+</script>
+
+</html>
