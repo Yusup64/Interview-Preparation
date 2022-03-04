@@ -24,3 +24,22 @@ enum G {
     DOG,
     MOUSE
 }
+
+interface Task {
+    title: string
+    description: string
+    expires: Date
+}
+/* interface TaskView {
+    title: string
+    description: string
+} */
+
+// type TaskView = Partial<Task>
+type TaskView = {
+    [key in keyof Task]?: Task[key]
+};
+
+const task: TaskView = {
+    title: 'Task 1'
+}

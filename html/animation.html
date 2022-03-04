@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box1 {
+        width: 200px;
+        height: 200px;
+        background-color: royalblue;
+        /* position: absolute; */
+        /* left: 0; */
+        animation: move 2s linear 0s 1;
+        display: inline-block;
+        /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    }
+
+    .box2 {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        display: inline-block;
+    }
+
+    @keyframes move {
+        0% {
+            /* transform: none; */
+        }
+
+        100% {
+            /* margin-left: 500px; */
+            transform: translateX(500px);
+        }
+    }
+</style>
+
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+
+</html>

@@ -6,7 +6,10 @@
 // }
 // let animal = new Animal();
 // console.log(animal);
-function sayHi() {
-    console.log('hi');
-}
-sayHi();
+import { f3, f4 } from './1';
+import { f1, f2 } from './2';
+
+f1();
+f2();
+f3();
+f4();

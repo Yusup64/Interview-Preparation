@@ -43,8 +43,112 @@ class LazyMan {
         return this;
     }
 }
-// new LazyMan('Tony').eat('lunch').sleep(5).eat('dinner').sleep(10).eat('junk food');
+//#region 
+/* class LazyManClass {
+    // 构造函数
+    constructor(name) {
+        this.name = name
+        // 定义一个数组存放执行队列
+        this.queue = []
+        console.log(`Hi I am ${name}`)
+        // 在调用LazyManClass时首先会打印 Hi I am ${name}
+        setTimeout(() => {
+            this.next()
+        }, 0)
 
+    }
+    //  定义原型方法
+    eat(food) {
+        var fn = () => {
+            console.log(`I am eating ${food}`)
+            this.next()
+        }
+        this.queue.push(fn)
+        return this
+    }
+    sleep(time) {
+        var fn = () => {
+            // 等待了10秒...
+            setTimeout(() => {
+                console.log(`等待了${time}秒`)
+                this.next()
+            }, 1000 * time)
+        }
+        this.queue.push(fn)
+        return this
+    }
+    sleepFirst(time) {
+        var fn = () => {
+            // 等待了5秒...
+            setTimeout(() => {
+                console.log(`等待了${time}秒`)
+                this.next()
+            }, 1000 * time)
+        }
+        this.queue.unshift(fn)
+        return this
+    }
+    next() {
+        var fn = this.queue.shift()
+        fn && fn()
+    }
+} */
+// function LazyMan(name) {
+//     return new LazyManClass(name)
+// }
+// LazyMan('Tony').eat('lunch').eat('dinner').sleepFirst(5).sleep(10).eat('junk food')
+
+class _LazyMan {
+    constructor(name) {
+        console.log(`Hi I am ${name}`);
+        this.task = [];
+        Promise.resolve().then(() => {
+            this.next();
+        })
+    }
+    eat(food) {
+        this.task.push(() => {
+            console.log(`I am eating ${food}`)
+            this.next();
+        })
+        return this
+    }
+    sleepFirst(time) {
+        this.task.unshift(() => {
+            // 等待了5秒...
+            setTimeout(() => {
+                console.log(`等待了${time}秒`)
+                this.next()
+            }, 1000 * time)
+        })
+        return this
+    }
+    sleep(time) {
+        this.task.push(() => {
+            // 等待了10秒...
+            setTimeout(() => {
+                console.log(`等待了${time}秒`)
+                this.next()
+            }, 1000 * time)
+        })
+        return this
+    }
+    next() {
+        let fn = this.task.shift();
+        fn && fn();
+    }
+}
+function LazyMan(name) {
+    return new _LazyMan(name)
+}
+LazyMan('Tony').eat('lunch').eat('dinner').sleepFirst(5).sleep(10).eat('junk food')
+// Hi I am Tony
+// 等待了5秒...
+// I am eating lunch
+// I am eating dinner
+// 等待10秒
+// I am eating junk food
+//#endregion
 /**
  * @description 找数组中第二大的值
  * */
@@ -143,4 +247,7 @@ class TrafficLight {
     }
 }
 let light = new TrafficLight();
-light.setColor('red', 2).setColor('yellow', 1).setColor('green', 3);
+function start() {
+    return light.setColor('red', 2).setColor('yellow', 1).setColor('green', 3);
+}
+start();

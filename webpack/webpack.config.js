@@ -3,7 +3,7 @@ const MyPlugin = require('./plugins/myplugin.js');
 module.exports = {
     mode: 'production',
     // entry: ['./main.js', './index.js'],
-    entry: './index.js',
+    entry: './src/index.js',
     // entry: {
     //     main: './main.js',
     //     index: './index.js'
