@@ -12,7 +12,7 @@ class MyPlugin {
             console.log('initialize');
             console.time('compile');
         })
-        compiler.hooks.emit.tap('MyPlugin', (stats) => {
+        compiler.hooks.make.tap('MyPlugin', (stats) => {
             console.timeEnd('compile');
         })
     }

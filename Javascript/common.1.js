@@ -75,7 +75,7 @@ let obj = {
     根据构建函数返回类型作判断，如果是原始值则被忽略，如果是返回对象，需要正常处理
 */
 {
-    function mynew(Func, ...args) {
+    function myNew(Func, ...args) {
         // 1.创建一个新对象
         const obj = {}
         // 2.新对象原型指向构造函数原型对象
