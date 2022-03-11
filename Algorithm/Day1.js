@@ -184,3 +184,37 @@ function lengthOfLongestSubstring(s) {
     return max;
 }
 // console.log('lengthOfLongestSubstring', lengthOfLongestSubstring("bbbb")) 
+
+/**
+ * // 算法 list转树  list to Tree
+ * @typedef {{id:number,name:string,parentId:number}} TreeNode
+ * @param {Array<TreeNode>} list - 列表
+ * @description
+ * ```javascript
+ * var list = [{id: 1, name: 'a' ,parentId: 0}, 
+ * {id: 2, name: 'b',  parentId: 1}, 
+ * {id: 3, name: 'c',  parentId: 1}, 
+ * {id: 4, name: 'c',  parentId: 4}];
+ * ```
+ * */
+
+function getTree(list = []) {
+    let map = {};
+    let tree = [];
+    list.forEach(item => {
+        map[item.id] = item
+    })
+    for (let item of list) {
+        if (item.parentId === 0) {
+            tree.push(item)
+            continue;
+        } else {
+            let parent = map[item.parentId];
+            parent.children = parent.children || [];
+            parent.children.push(item)
+        }
+    }
+    return tree;
+}
+let list = [{ id: 1, name: 'a', parentId: 0 }, { id: 2, name: 'b', parentId: 1 }, { id: 3, name: 'c', parentId: 1 }, { id: 4, name: 'c', parentId: 2 }]
+console.dir(getTree(list));

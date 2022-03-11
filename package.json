@@ -16,8 +16,10 @@
     "@babel/preset-env": "^7.16.8",
     "@types/node": "^16.11.12",
     "copy-webpack-plugin": "^10.2.4",
+    "file-loader": "^6.2.0",
     "koa": "^2.13.4",
     "koa-router": "^10.1.1",
+    "url-loader": "^4.1.1",
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {

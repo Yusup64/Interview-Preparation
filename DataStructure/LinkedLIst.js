@@ -88,7 +88,7 @@ function reverseLinkedList(linkedList) {
     if (!head || head.next == null) return head;
     let newHead;
     while (head) {
-        let n = head.next;//通过n来引用链表，否则heac.next = null后面的就收回了
+        let n = head.next;//通过n来引用链表，否则head.next = null后面的就收回了
         head.next = newHead //把head的next指向newHead
         newHead = head //
         head = n
