@@ -425,7 +425,7 @@ TLS连接是怎么回事呢，根据TLS版本和密钥交换法不同，过程�
 3. 浏览器又生成椭圆曲线参数`client-params`，握手数据摘要等信息传给服务器
 4. 服务器再返回摘要给浏览器确认应答
 
-这个版本不再生成椭圆曲线参数`cliend-params`和`server-params`，而是在服务器和浏览器两边都得到`server-params`和`client-params`之后，就用ECDHE算法直接算出`pre-random`，这就两边都有了三个随机数，然后各自再将三个随机加密混合生成最终密钥
+这个版本不再生成椭圆曲线参数`client-params`和`server-params`，而是在服务器和浏览器两边都得到`server-params`和`client-params`之后，就用ECDHE算法直接算出`pre-random`，这就两边都有了三个随机数，然后各自再将三个随机加密混合生成最终密钥
 
 ### TLS 1.3版
 

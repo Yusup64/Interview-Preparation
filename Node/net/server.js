@@ -6,7 +6,7 @@ const server = net.createServer((c) => {
         console.log('client disconnected');
     });
     c.on('data', (data) => {
-        console.log(data.toString('utf-8'));
+        console.log(data.toString('utf-8'),'\n');
     })
     // c.write('hello World\r\n');
     // c.pipe(c);
@@ -17,3 +17,4 @@ server.on('error', (err) => {
 server.listen(8124, () => {
     console.log('server bound');
 });
+server.on('close', () => {})

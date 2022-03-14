@@ -20,3 +20,14 @@ let newFn = coreFn.before(() => {
     console.log('before');
 })
 newFn(1, 2, 3, 4);
+
+
+// JS语言  对象遍历
+/**
+ * 方式	        基本属性	        原型链      	不可枚举	        Symbol
+for in	          是	             是	             否	                否
+Object.keys()	  是	             否	             否	                否
+Object.getOwnPropertyNames()	是	 否	             是	                否
+Object.getOwnPropertySymbols()	否	 否	             是	                是
+Reflect.ownKeys()	是	             否	             是	                是
+ * */
