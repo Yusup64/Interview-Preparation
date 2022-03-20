@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        width: 200px;
+        height: 200px;
+        background-color: #ccc;
+        /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+    }
+</style>
+
+<body>
+    <div>Hello World</div>
+</body>
+<script>
+    let appContent = `<div id="qiankun">
+    <div>Hello Yusup</div>
+    <style>div{color:red}</style>
+    </div>`;
+    debugger
+    const containerElement = document.createElement('div');
+    containerElement.innerHTML = appContent;
+    const appElement = containerElement.firstChild;
+    let html = appElement.innerHTML
+    appElement.innerHTML = '';
+    let shadow = appElement.attachShadow({ mode: 'closed' });
+    shadow.innerHTML = html;
+    document.body.appendChild(appElement);
+    document.body.shadowRoot()
+</script>
+
+</html>

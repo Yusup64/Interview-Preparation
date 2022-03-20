@@ -2,6 +2,8 @@ const MyPlugin = require('./plugins/myplugin.js');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// var JavaScriptObfuscator = require('webpack-obfuscator');
 /** @type {import("webpack").Configuration}  */
 module.exports = {
     // entry: ['./main.js', './index.js'],
